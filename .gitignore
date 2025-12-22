@@ -1,0 +1,5 @@
+node_modules/
+*.har
+*.log
+.env
+.DS_Store

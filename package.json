@@ -1,0 +1,17 @@
+{
+  "name": "skanetrafiken-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for planning trips using Skånetrafiken API",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "skanetrafiken": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["skanetrafiken", "transit", "cli"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}
