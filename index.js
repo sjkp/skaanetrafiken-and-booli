@@ -106,13 +106,11 @@ async function main() {
 
     const toPoint = selectBestPoint(toPoints);
     console.log(`✓ Found: ${toPoint.name} (${toPoint.type})`);
-
+    console.log(toPoints);
     console.log('\nPlanning journey...');
     const result = await planJourney({
-      fromPointId: fromPoint.id2,
-      fromPointType: fromPoint.type,
-      toPointId: toPoint.id2,
-      toPointType: toPoint.type,
+      fromPoint: fromPoint,
+      toPoint: toPoint,
       departureTime
     });
 

@@ -82,7 +82,7 @@ class BooliClient {
     if (data.errors) {
       throw new Error(`GraphQL error: ${JSON.stringify(data.errors)}`);
     }
-
+    
     return data.data;
   }
 

@@ -1,17 +1,38 @@
 {
-  "name": "skanetrafiken-cli",
+  "name": "skane-property-finder",
   "version": "1.0.0",
-  "description": "CLI tool for planning trips using Skånetrafiken API",
-  "main": "index.js",
+  "description": "Automated property search in Skåne with email notifications and travel time calculations",
+  "main": "find-properties.js",
   "type": "module",
   "bin": {
     "skanetrafiken": "./index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node find-properties.js",
+    "debug": "node find-properties.js --debug",
+    "docker:build": "docker build -t skane-property-finder .",
+    "docker:run": "docker run --env-file .env skane-property-finder",
+    "docker:debug": "docker run -e DEBUG=true -v $(pwd):/output skane-property-finder"
   },
-  "keywords": ["skanetrafiken", "transit", "cli"],
-  "author": "",
+  "keywords": [
+    "property",
+    "real-estate",
+    "booli",
+    "skanetrafiken",
+    "email",
+    "automation",
+    "sweden",
+    "skane",
+    "transit",
+    "cli"
+  ],
+  "author": "Property Search Bot",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "nodemailer": "^7.0.12"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
