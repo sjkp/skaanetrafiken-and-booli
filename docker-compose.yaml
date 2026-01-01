@@ -1,15 +1,11 @@
 version: '3'
 services:
-  app:
-    image: 'ghcr.io/sjkp/skaanetrafiken-and-booli:sha-d2f9591'
-    container_name: app_app_1
-    restart: 'no'
-  restarter:
-    image: 'docker:cli'
+  scheduler:
+    image: 'mcuadros/ofelia:latest'
+    command: 'daemon --docker'
     volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock'
-    command:
-      - /bin/sh
-      - '-c'
-      - 'while true; do sleep 86400; docker restart app_app_1; done'
-    restart: unless-stopped
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    labels:
+      ofelia.job-run.my-run-job.schedule: '@every 24h'
+      ofelia.job-run.my-run-job.image: 'ghcr.io/sjkp/skaanetrafiken-and-booli:sha-12ab072'
+      ofelia.job-run.my-run-job.environment: '["SMTP_HOST=localhost","SMTP_PORT=465","SMTP_SECURE=true","SMTP_USER=email@email.com","SMTP_PASS=pass","EMAIL_FROM=email@email.com","EMAIL_TO=email@email.com","EMAIL_SUBJECT=New Properties in Skåne - Villa, Fritidshus, Gård"]'
