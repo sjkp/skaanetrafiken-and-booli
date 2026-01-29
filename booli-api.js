@@ -11,10 +11,11 @@ const BOOLI_GRAPHQL_URL = 'https://www.booli.se/graphql';
  * Persisted query hashes for different operations
  */
 const OPERATION_HASHES = {
-  search: 'cb4a5ccfbe86483ee760bcd9d09284fb49045581ee48568c678479a2a9f2e724',
+  search: '8ed07f5c50d3c1a429e4864d83b7cbeef21a3afe4b96743a95e1034429aee2f6',
   polygons: 'b38be74aaac081a0e1e151ca222c848f3817c4b3528301f1b44a1e250bda2bb7',
   userSearchHistoryDescriptions: 'ae37c4b99365c3db13d534a542aa095df050e890c082f677c06835f3665eca2e',
   areaSuggestionSearch: 'ae60b499ae7d33a7e96f69fcf2c40ca7b88275169aee38e8cc844c76e5544f2a',
+  areaInfo: 'fa90e12fe15fb60274954e0dbaa67edc4c789d1bfb9b0d6508e62ab3b91bd661',
 };
 
 /**
@@ -155,6 +156,21 @@ class BooliClient {
     return this.query('userSearchHistoryDescriptions', {
       input: { params },
     });
+  }
+
+  /**
+   * Get area information
+   *
+   * @param {string} areaId - The area ID
+   * @param {string} searchType - The search type (e.g., 'listings')
+   * @param {string} objectTypes - Object types (e.g., 'Villa')
+   * @returns {Promise<object>} Area information
+   *
+   * @example
+   * const info = await client.getAreaInfo('64', 'listings', 'Villa');
+   */
+  async getAreaInfo(areaId, searchType = 'listings', objectTypes = 'Villa') {
+    return this.query('areaInfo', { areaId, searchType, objectTypes });
   }
 
   /**
